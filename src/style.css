@@ -33,7 +33,7 @@ body {
 button {
   font-family: "Butcherman", cursive;
   border: none;
-  font-size: 60px;
+  font-size: 9vmin;
   background-color: transparent;
   color: white;
   cursor: pointer;
