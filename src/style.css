@@ -14,16 +14,27 @@ body {
   left: 0;
   outline: none;
 }
+.button-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 3s ease;
+}
+.hide {
+  transition: all 3s ease;
+
+  opacity: 0;
+}
 button {
-  position: absolute;
-  display: block;
-  z-index: 99;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
   font-family: "Butcherman", cursive;
   border: none;
-  padding: 40px;
   font-size: 60px;
   background-color: transparent;
   color: white;
@@ -32,4 +43,7 @@ button {
 }
 button:hover {
   color: red;
+}
+button:active {
+  transform: scale(0.9);
 }

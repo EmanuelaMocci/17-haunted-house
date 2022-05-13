@@ -4,28 +4,17 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import * as dat from "lil-gui";
 import { gsap } from "gsap";
 
-// dom element
-window.onload = () => {
-  animateCamera();
-};
-
-const audio = new Audio("/sounds/button.wav");
-const button = document.querySelector("button");
-
-button.addEventListener("click", (e) => {
-  audio.play();
-});
 /**
  * Base
  */
 // Debug
 const gui = new dat.GUI();
 
-// Canvas
-const canvas = document.querySelector("canvas.webgl");
-
 // Scene
 const scene = new THREE.Scene();
+
+// Canvas
+const canvas = document.querySelector("canvas.webgl");
 
 // Fog
 const fog = new THREE.Fog("#262837", 1, 15);
@@ -361,14 +350,15 @@ tick();
 const animateCamera = () => {
   // animate camera using gsap
   gsap.to(camera.position, {
-    duration: 5,
+    duration: 6,
     x: 4,
     y: 5,
     z: 6,
-    ease: "power3.out",
+    ease: "power2.out",
   });
 };
 
+// Audio ghost
 // create an AudioListener and add it to the camera
 const listener = new THREE.AudioListener();
 camera.add(listener);
@@ -376,11 +366,22 @@ camera.add(listener);
 // create a global audio source
 const sound = new THREE.Audio(listener);
 
-// load a sound and set it as the Audio object's buffer
-const audioLoader = new THREE.AudioLoader();
-audioLoader.load("/sounds/ghost1.mp3", function (buffer) {
-  sound.setBuffer(buffer);
-  sound.setLoop(true);
-  sound.setVolume(0.5);
-  sound.play();
+// Audio button
+const audio = new Audio("/sounds/button.wav");
+const button = document.querySelector("button");
+const buttonContainer = document.querySelector(".button-container");
+
+button.addEventListener("click", (e) => {
+  audio.play();
+  buttonContainer.style.display = "none";
+  buttonContainer.classList.add("hide");
+  // load a sound and set it as the Audio object's buffer
+  const audioLoader = new THREE.AudioLoader();
+  audioLoader.load("/sounds/ghost1.mp3", function (buffer) {
+    sound.setBuffer(buffer);
+    sound.setLoop(true);
+    sound.setVolume(0.5);
+    sound.play();
+  });
+  animateCamera();
 });
