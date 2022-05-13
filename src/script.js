@@ -351,7 +351,7 @@ const animateCamera = () => {
   // animate camera using gsap
   gsap.to(camera.position, {
     duration: 3,
-    delay: 1,
+    delay: 0.5,
     x: 4,
     y: 5,
     z: 8,
