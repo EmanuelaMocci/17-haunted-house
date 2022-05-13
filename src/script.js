@@ -350,7 +350,8 @@ tick();
 const animateCamera = () => {
   // animate camera using gsap
   gsap.to(camera.position, {
-    duration: 6,
+    duration: 4,
+    delay: 1,
     x: 4,
     y: 5,
     z: 6,
@@ -373,15 +374,17 @@ const buttonContainer = document.querySelector(".button-container");
 
 button.addEventListener("click", (e) => {
   audio.play();
-  buttonContainer.style.display = "none";
-  buttonContainer.classList.add("hide");
-  // load a sound and set it as the Audio object's buffer
-  const audioLoader = new THREE.AudioLoader();
-  audioLoader.load("/sounds/ghost1.mp3", function (buffer) {
-    sound.setBuffer(buffer);
-    sound.setLoop(true);
-    sound.setVolume(0.5);
-    sound.play();
-  });
-  animateCamera();
+  setTimeout(function () {
+    // buttonContainer.style.display = "none";
+    buttonContainer.classList.add("hide");
+    // load a sound and set it as the Audio object's buffer
+    const audioLoader = new THREE.AudioLoader();
+    audioLoader.load("/sounds/ghost1.mp3", function (buffer) {
+      sound.setBuffer(buffer);
+      sound.setLoop(true);
+      sound.setVolume(0.5);
+      sound.play();
+    });
+    animateCamera();
+  }, 1000);
 });
